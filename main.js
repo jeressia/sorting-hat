@@ -7,6 +7,7 @@ const houses = [
 ];
 
 const expelledStudents = [];
+const inputIngredient = document.getElementById('inputIngredient');
 
 const hideInputForm = () => {
 document.getElementById('hiddenInput').style.display = 'none';
@@ -34,9 +35,37 @@ students.forEach(student => {
 printToDom('sortedStudents', domString);
 }
 
+const domStringBuilder = (arrayToPrint) => {
+    let domString = '';
+    students.forEach((student) => {
+        domString += `<div class="card col-3 mt-1 mb-2">`;
+        domString += `<div class="card-body">`;
+        domString += `<h5 class="card-title">${student.name}</h5>`;
+        domString += `<h5 class="card-title">${student.house}</h5>`;
+        domString += `<a href="#" class="btn btn-primary">Expel</a>`;
+        domString += `</div>`;
+        domString += `</div>`;
+    });
+   printToDom('sortedStudents',domString);
+}
+
+const addStudent = (e) => {
+    e.preventDefault();
+   const inputName = document.getElementById('inputName').value;
+   const newName = {
+       name: inputName,
+   };
+   students.push(newName);
+
+domStringBuilder(students);
+inputName.value='';
+};
+
 
 const eventListener = () => {
     document.getElementById('startSorting').addEventListener('click', showInputForm);
+    document.getElementById('sortBtn').addEventListener('click', addStudent);
+
   };
   
 

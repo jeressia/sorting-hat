@@ -11,6 +11,24 @@ body {
     padding: 10px;
 }
 
+#hiddenInput {
+    display: none;
+}
+
 .jumbotron {
     background-color: #ccb5cc;
+}
+
+.card {
+    margin: 2px;
+    width: 50px;
+}
+
+.card-body {
+    text-align: center;
+}
+#sortedStudents{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
