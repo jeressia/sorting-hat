@@ -1,3 +1,8 @@
+
+body {
+    background-color: #44354e;
+}
+
 .display-4 {
     text-align: center;
 }
@@ -6,6 +11,6 @@
     padding: 10px;
 }
 
-.formText{
-    text-align: center important!;
+.jumbotron {
+    background-color: #ccb5cc;
 }
