@@ -7,7 +7,7 @@ const houses = [
 ];
 
 const expelledStudents = [];
-const inputIngredient = document.getElementById('inputIngredient');
+let studentCounter = 1;
 
 const hideInputForm = () => {
 document.getElementById('hiddenInput').style.display = 'none';
@@ -23,18 +23,13 @@ const printToDom = (divId, textToPrint) => {
     selectDiv.innerHTML =textToPrint;
 }
 
-const cardBuilder = () => {
-    let domString = '';
-students.forEach(student => {
-    domstring += `<div class="card">`
-    domstring += `<div class="name">${student.name}</div>`
-    domstring += `<div class="house">${student.house}</div>`
-    domstring += `<button class="btn">Expel</button>`
-    domstring += `</div>`
-});
-printToDom('sortedStudents', domString);
-}
 
+const addDeleteEvents = () => {
+    const deleteButtons = document.getElementsByClassName('deleteButton');
+    for(let i=0; i<deleteButtons.length; i++){
+        deleteButtons[i].addEventListener('click',deleteFunction);
+    }
+};
 const domStringBuilder = (arrayToPrint) => {
     let domString = '';
     students.forEach((student) => {
@@ -42,7 +37,7 @@ const domStringBuilder = (arrayToPrint) => {
         domString += `<div class="card-body">`;
         domString += `<h5 class="card-title">${student.name}</h5>`;
         domString += `<h5 class="card-title">${student.house}</h5>`;
-        domString += `<a href="#" class="btn btn-primary">Expel</a>`;
+        domString += `<a class="btn btn-primary deleteButton" id="${student.id}">Expel</a>`;
         domString += `</div>`;
         domString += `</div>`;
     });
@@ -54,18 +49,30 @@ const addStudent = (e) => {
    const inputName = document.getElementById('inputName').value;
    const newName = {
        name: inputName,
+       id:`student${studentCounter}`,
    };
    students.push(newName);
+   studentCounter++;
 
 domStringBuilder(students);
 inputName.value='';
+addDeleteEvents();
 };
 
+const deleteFunction = (e) => {
+    console.log(e.currentTarget);
+    const buttonId = e.target.id;
+    students.forEach((student,index)=> {
+        if (student.id===buttonId){
+            students.splice(index,1)
+        }
+    })
+    domStringBuilder(students);
+};
 
 const eventListener = () => {
     document.getElementById('startSorting').addEventListener('click', showInputForm);
     document.getElementById('sortBtn').addEventListener('click', addStudent);
-
   };
   
 

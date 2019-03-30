@@ -11,9 +11,6 @@ body {
     padding: 10px;
 }
 
-#hiddenInput {
-    display: none;
-}
 
 .jumbotron {
     background-color: #ccb5cc;
